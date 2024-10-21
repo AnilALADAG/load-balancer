@@ -34,8 +34,8 @@ type ServerPool struct {
 
 func (b *Backend) SetAlive(alive bool) {
 	b.mux.Lock()
+	defer b.mux.Unlock()
 	b.Alive = alive
-	b.mux.RUnlock()
 }
 
 func (b *Backend) IsAlive() (alive bool) {
